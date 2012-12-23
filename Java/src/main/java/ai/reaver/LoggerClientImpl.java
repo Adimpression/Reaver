@@ -17,19 +17,27 @@ import java.util.logging.Logger;
 public class LoggerClientImpl implements LoggerClient {
 
     final private Logger logger;
-
+//    private final String loggerName;
 
     @Inject
-    public LoggerClientImpl(@Assisted(value = "loggerName")
-                            final String loggerName) {
+    public LoggerClientImpl(
+            @Assisted
+            final String loggerName) {
+        // this.loggerName = loggerName;
         logger = Logger.getLogger(loggerName);
     }
 
+//    public String getLoggerName() {
+//        return loggerName;
+//    }
 
     @Override
     public void log(final String message, final Object objectOfWhichToStringWillBeCalledButPermitsNull) {
-        logger.log(Level.ALL, message, objectOfWhichToStringWillBeCalledButPermitsNull != null ?
+        System.out.println("Logger Name:" + logger.getName());
+
+        logger.log(Level.SEVERE, message, objectOfWhichToStringWillBeCalledButPermitsNull != null ?
                 objectOfWhichToStringWillBeCalledButPermitsNull.toString() :
                 "");
+        System.out.println(message + objectOfWhichToStringWillBeCalledButPermitsNull);
     }
 }

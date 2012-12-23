@@ -10,5 +10,7 @@ package ai.reaver;
  * @author Ravindranath Akila
  */
 public interface LoggerClient {
+//    public String getLoggerName();
+
     public void log(final String message, final Object objectOfWhichToStringWillBeCalledButPermitsNull);
 }
