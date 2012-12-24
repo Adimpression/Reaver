@@ -7,6 +7,8 @@ import com.google.inject.Injector;
 import java.io.Serializable;
 
 /**
+ * This class needs to be {@link Serializable} because it needs to be sent across EJB & Hazelcast nodes
+ *
  * Created by IntelliJ IDEA.
  * User: <a href="http://www.ilikeplaces.com"> http://www.ilikeplaces.com </a>
  * Date: Jan 1, 2010
@@ -54,7 +56,7 @@ final public class ReturnImpl<T> implements Return<T>, Serializable {
      * The current return implementation had to go by int and expects the system will not exeed integer range. To get
      * the exact error code, check if the return status is greater than zero and if so, get the code separately.
      *
-     * @return
+     * @return int corresponding to the return status
      */
     @Override
     final public int returnStatus() {

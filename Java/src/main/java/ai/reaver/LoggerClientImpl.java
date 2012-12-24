@@ -3,6 +3,7 @@ package ai.reaver;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Ravindranath Akila
  */
-public class LoggerClientImpl implements LoggerClient {
+public class LoggerClientImpl implements LoggerClient, Serializable {
 
     final private Logger logger;
 
