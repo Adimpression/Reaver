@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  */
 public class LoggerClientImpl implements LoggerClient, Serializable {
 
-    final private Logger logger;
+
+    transient final private Logger logger;
 
     @Inject
     public LoggerClientImpl(

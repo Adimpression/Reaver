@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * This class needs to be {@link Serializable} because it needs to be sent across EJB & Hazelcast nodes
- *
+ * <p/>
  * Created by IntelliJ IDEA.
  * User: <a href="http://www.ilikeplaces.com"> http://www.ilikeplaces.com </a>
  * Date: Jan 1, 2010
@@ -19,9 +19,10 @@ import java.io.Serializable;
 final public class ReturnImpl<T> implements Return<T>, Serializable {
 
     final static private String logMsgBeginning = "SORRY! I ENCOUNTERED AN EXCEPTION! HOWEVER, THE APPLICATION SHOULD REMAIN INTACT. SEE BELOW FOR MORE DETAILS.\n\n";
+    public static LoggingApproach LOGGING_APPROACH = null;
     static private long ERROR_SEQ_NUMBER = 1;
-    final Injector loggerModule = Guice.createInjector(new LoggerModule());
-    final LoggerClient logger = loggerModule.getInstance(LoggerClientFactory.class).getInstance(this.getClass().getName());
+    transient final Injector loggerModule = Guice.createInjector(new ReturnLoggerModule());
+    transient final LoggerClient logger = loggerModule.getInstance(LoggerClientFactory.class).getInstance(this.getClass().getName());
     private int returnStatus = 1;
     private T returnValue = null;
     private Throwable returnError = null;
@@ -113,4 +114,5 @@ final public class ReturnImpl<T> implements Return<T>, Serializable {
                 ", returnMsg='" + (returnMsg != null ? returnMsg : "") + '\'' +
                 '}';
     }
+
 }
